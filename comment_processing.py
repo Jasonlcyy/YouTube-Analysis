@@ -216,27 +216,3 @@ fastest_commenters = fastest.groupby(
         by = 'Speed', ascending = False)['Speed']
         
 fastest_commenters.to_csv('/Users/jasonlcyy/Downloads/fastest_commenters.csv')
-
-''' most liked/replied comments '''
-most_liked = comments.sort_values(
-    by = 'Comment Likes Count', ascending = False).groupby(
-        by = 'Asset Title').head(10)
-most_liked.sort_values(
-    by = ['Asset Published Date', 'Comment Likes Count'], 
-    ascending = [True, False], inplace = True)
-most_liked.drop(['Comment ID', 'Comment Author ID', 
-                 'Asset ID', 'Asset Views Count',
-                 'Asset Likes Count', 'Asset Dislikes Count', 
-                 'Asset Comments Count'],
-             axis = 1, inplace = True)
-most_replied = comments.sort_values(
-    by = 'Comment Replies Count', ascending = False).groupby(
-        by = 'Asset Title').head(10)
-most_replied.sort_values(
-    by = ['Asset Published Date', 'Comment Replies Count'], 
-    ascending = [True, False], inplace = True)
-most_replied.drop([
-    'Comment ID', 'Comment Author ID', 
-    'Asset ID', 'Asset Views Count',
-    'Asset Likes Count', 'Asset Dislikes Count', 'Asset Comments Count'],
-             axis = 1, inplace = True)
